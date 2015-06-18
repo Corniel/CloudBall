@@ -14,4 +14,4 @@ Getting Started
 ---------------
 You need MXA Game Studio (Microsoft XNA Game Studio).
 
-You can get that on GitHub: https://github.com/insma/MXA-Game-Studio
+You can get that on CodePlex: https://mxa.codeplex.com
