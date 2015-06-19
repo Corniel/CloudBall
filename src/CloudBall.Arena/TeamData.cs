@@ -10,7 +10,7 @@ namespace CloudBall.Arena
 	[Serializable]
 	public class TeamData : IEquatable<TeamData>
 	{
-		public static readonly Elo InitalRating = 1200d;
+		public static readonly Elo InitalRating = 1600d;
 
 		public string Name { get; set; }
 
@@ -23,6 +23,9 @@ namespace CloudBall.Arena
 		public int Wins { get; set; }
 		public int Draws { get; set; }
 		public int Loses { get; set; }
+
+		public int GoalsFor { get; set; }
+		public int GoalsAgainst { get; set; }
 
 		public int Matches { get { return Wins + Draws + Loses; } }
 

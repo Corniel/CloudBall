@@ -104,6 +104,12 @@ namespace CloudBall.Arena
 
 					ConsoleX.WriteResult(red, blue, score);
 
+					red.GoalsFor += score.Red;
+					red.GoalsAgainst += score.Blue;
+
+					blue.GoalsFor += score.Blue;
+					blue.GoalsAgainst += score.Red;
+
 					if (score.RedWins)
 					{
 						red.Wins++;

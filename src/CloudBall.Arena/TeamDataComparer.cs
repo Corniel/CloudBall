@@ -10,7 +10,7 @@ namespace CloudBall.Arena
 			{
 				return y.Rating.CompareTo(x.Rating);
 			}
-			return x.IsActive.CompareTo(y.IsActive);
+			return y.IsActive.CompareTo(x.IsActive);
 		}
 	}
 }

@@ -77,16 +77,18 @@ namespace CloudBall.Arena
 			{
 				foreach (var team in ArenaData.Instance.Teams)
 				{
-					writer.WriteLine("{0,4}  {1,-20}  {2:0000}  {3,6}  {4,6}  {5,6}  {6,6}  {7:000%} {8}",
-						i++,
-						team.Name,
-						team.Rating,
-						team.Wins,
-						team.Draws,
-						team.Loses,
-						team.Matches,
-						team.Score,
-						team.IsActive ? "" : "*");
+
+					writer.Write("{0,4}  ", i++);
+					writer.Write("{0,-20}  ", team.Name + (team.IsActive ? "" : "*"));
+					writer.Write("{0:0000}  ", team.Rating);
+					writer.Write("{0,6}  ", team.Wins);
+					writer.Write("{0,6}  ", team.Draws);
+					writer.Write("{0,6}  ", team.Loses);
+					writer.Write("{0,6}  ", team.Matches);
+					writer.Write("+{0,6} ({1:0.00}) ", team.GoalsFor, (double)team.GoalsFor/team.Matches);
+					writer.Write("-{0,6} ({1:0.00}) ", team.GoalsAgainst, (double)team.GoalsAgainst/team.Matches);
+					writer.Write("{0,4} ", team.Score.Value.ToString("0%"));
+					writer.WriteLine();
 				}
 			}
 		}

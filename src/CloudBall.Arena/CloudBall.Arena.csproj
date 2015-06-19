@@ -8,7 +8,7 @@
     <ProjectGuid>{F28C2B04-EE79-417E-A43D-CB3DA6A75133}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CloudBallArena</RootNamespace>
+    <RootNamespace>CloudBall.Arena</RootNamespace>
     <AssemblyName>Arena</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -42,12 +42,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Common">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\CloudBall 1.0.0.0\Common.dll</HintPath>
+      <HintPath>..\packages\CloudBall 1.0.0.0\Common.dll</HintPath>
     </Reference>
     <Reference Include="GameEngine">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\CloudBall 1.0.0.0\GameEngine.dll</HintPath>
+      <HintPath>..\packages\CloudBall 1.0.0.0\GameEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
