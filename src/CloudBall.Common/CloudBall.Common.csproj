@@ -56,7 +56,6 @@
     <Compile Include="Conversion\EloTypeConverter.cs" />
     <Compile Include="Elo.cs" />
     <Compile Include="EloExtensions.cs" />
-    <Compile Include="GamePhysics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimulationFailedException.cs" />
     <Compile Include="Viewer\CloudBallBallReplay.cs" />
