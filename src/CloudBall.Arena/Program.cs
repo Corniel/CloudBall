@@ -90,12 +90,8 @@ namespace CloudBall.Arena
 			}
 
 		}
-		public void Run(TeamData r, TeamData b)
+		public void Run(TeamData red, TeamData blue)
 		{
-			// Strongest team first.
-			var red = r.Rating < b.Rating ? b : r;
-			var blue = r.Rating < b.Rating ? r : b;
-
 			using (var engine = new CloudBallEngine(red.CreateInstance(), blue.CreateInstance()))
 			{
 				try
