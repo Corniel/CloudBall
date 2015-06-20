@@ -16,9 +16,10 @@ namespace CloudBall
 				new CloudBall.Engines.Dummy(),
 				new CloudBall.Engines.GoForTheBall(),
 				new CloudBall.Engines.SimpleStart(),
+				new CloudBall.Engines.Stonewall(),
 			};
 
-			using (Client.Client client = new Client.Client(teams[1], teams[2]))
+			using (Client.Client client = new Client.Client(teams[1], teams[3]))
 			{
 				client.Run();
 			}

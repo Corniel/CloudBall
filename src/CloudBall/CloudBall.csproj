@@ -96,7 +96,7 @@
     <Reference Include="Microsoft.Xna.Framework.Storage">
       <Private>False</Private>
     </Reference>
-    <Reference Include="mscorlib"/>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -119,6 +119,10 @@
     <ProjectReference Include="..\CloudBall.Engines.SimpleStart\CloudBall.Engines.SimpleStart.csproj">
       <Project>{f925cfd7-fc3b-46c1-8008-efc16d75b7fe}</Project>
       <Name>CloudBall.Engines.SimpleStart</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CloudBall.Engines.Stonewall\CloudBall.Engines.Stonewall.csproj">
+      <Project>{0535d943-df50-409a-9837-aba0fff09e33}</Project>
+      <Name>CloudBall.Engines.Stonewall</Name>
     </ProjectReference>
     <ProjectReference Include="..\CloudBallContent\CloudBallContent.contentproj">
       <Name>CloudBallContent</Name>
