@@ -75,6 +75,9 @@ namespace CloudBall.Arena
 			int i = 1;
 			using (var writer = new StreamWriter(file.FullName))
 			{
+				writer.WriteLine("      Team                   Elo       W       D       L       #      Goals For  Goals Against       %");
+				writer.WriteLine("======================================================================================================");
+
 				foreach (var team in ArenaData.Instance.Teams)
 				{
 
@@ -85,9 +88,9 @@ namespace CloudBall.Arena
 					writer.Write("{0,6}  ", team.Draws);
 					writer.Write("{0,6}  ", team.Loses);
 					writer.Write("{0,6}  ", team.Matches);
-					writer.Write("+{0,6} ({1:0.00}) ", team.GoalsFor, (double)team.GoalsFor/team.Matches);
-					writer.Write("-{0,6} ({1:0.00}) ", team.GoalsAgainst, (double)team.GoalsAgainst/team.Matches);
-					writer.Write("{0,4} ", team.Score.Value.ToString("0%"));
+					writer.Write("{0,6}+ ({1:0.00}) ", team.GoalsFor, (double)team.GoalsFor/team.Matches);
+					writer.Write("{0,6}- ({1:0.00}) ", team.GoalsAgainst, (double)team.GoalsAgainst/team.Matches);
+					writer.Write("{0,6} ", team.Score.Value.ToString("0.0%"));
 					writer.WriteLine();
 				}
 			}
