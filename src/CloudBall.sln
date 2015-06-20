@@ -37,11 +37,13 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Debug|Any CPU.Build.0 = Debug|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Debug|x86.ActiveCfg = Debug|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Debug|x86.Build.0 = Debug|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Release|Any CPU.ActiveCfg = Release|x86
+		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Release|Any CPU.Build.0 = Release|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{482F55D6-B34F-4969-BADA-C2246DBE71E8}.Release|x86.ActiveCfg = Release|x86
@@ -50,14 +52,17 @@ Global
 		{32F18D77-239C-4CAE-8FA1-E066FF5FD150}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{32F18D77-239C-4CAE-8FA1-E066FF5FD150}.Debug|x86.ActiveCfg = Debug|x86
 		{32F18D77-239C-4CAE-8FA1-E066FF5FD150}.Release|Any CPU.ActiveCfg = Release|x86
+		{32F18D77-239C-4CAE-8FA1-E066FF5FD150}.Release|Any CPU.Build.0 = Release|x86
 		{32F18D77-239C-4CAE-8FA1-E066FF5FD150}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{32F18D77-239C-4CAE-8FA1-E066FF5FD150}.Release|x86.ActiveCfg = Release|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Debug|Any CPU.Build.0 = Debug|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Debug|x86.ActiveCfg = Debug|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Debug|x86.Build.0 = Debug|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Release|Any CPU.ActiveCfg = Release|x86
+		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Release|Any CPU.Build.0 = Release|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Release|Mixed Platforms.Build.0 = Release|x86
 		{F28C2B04-EE79-417E-A43D-CB3DA6A75133}.Release|x86.ActiveCfg = Release|x86
