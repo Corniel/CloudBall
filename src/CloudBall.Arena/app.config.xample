@@ -3,10 +3,10 @@
    <appSettings>
     <add key="Arena.Seed" value="12"/>
     <add key="Arena.K" value="30"/>
-    <add key="Arena.DataFile" value="D:\Code\GitHub\CloudBall\Arena\Arena.xml"/>
-    <add key="Arena.RankingsFile" value="D:\Code\GitHub\CloudBall\Arena\Arena.Rankings.txt"/>
-    <add key="Arena.EngineDirectory" value="D:\Code\GitHub\CloudBall\Arena\Engines"/>
-    <add key="Arena.ReplayDirectory" value="D:\Code\GitHub\CloudBall\Arena\Replays"/>
+    <add key="Arena.DataFile" value="*\CloudBall\Arena\Arena.xml"/>
+    <add key="Arena.RankingsFile" value="*\CloudBall\Arena\Arena.Rankings.txt"/>
+    <add key="Arena.EngineDirectory" value="*\CloudBall\Arena\Engines"/>
+    <add key="Arena.ReplayDirectory" value="*\CloudBall\Arena\Replays"/>
     <add key="Arena.FileSystemWatcherIsEnabled" value="true"/>
   </appSettings>
 </configuration>
