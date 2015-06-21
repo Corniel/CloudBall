@@ -108,6 +108,10 @@
     <Compile Include="RunCloudBall.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CloudBall.Common\CloudBall.Common.csproj">
+      <Project>{21f7188f-6b18-4ef9-9193-df23ae75b60a}</Project>
+      <Name>CloudBall.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CloudBall.Engines.Dummy\CloudBall.Engines.Dummy.csproj">
       <Project>{235d9fdf-7e97-4843-8be9-12fdcf59279f}</Project>
       <Name>CloudBall.Engines.Dummy</Name>

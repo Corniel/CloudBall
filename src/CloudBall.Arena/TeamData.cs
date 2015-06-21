@@ -127,24 +127,11 @@ namespace CloudBall.Arena
 
 		public static TeamData Create(Assembly assembly)
 		{
-			var tps = assembly.GetTypes().Where(tp => tp.GetInterfaces().Contains(typeof(ITeam))).ToList();
-
-			var file = new FileInfo(assembly.Location);
-
-			if (tps.Count == 0)
-			{
-				throw new NotSupportedException(string.Format("The Assembly '{0}' does not contain an ITeam implementation.", file.Name));
-			}
-			if (tps.Count > 1)
-			{
-				throw new NotSupportedException(string.Format("The Assembly '{0}' does not contain multiple ITeam implementations.", file.Name));
-			}
-
-			var botType = tps[0];
+			var botType = TeamFactory.GetTeamType(assembly);
 
 			var nameAttr = botType.GetCustomAttribute<BotNameAttribute>();
 
-			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(file);
+			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(new FileInfo(assembly.FullName));
 			
 			var team = new TeamData()
 			{

@@ -14,6 +14,7 @@ namespace CloudBall
 			var teams = new List<ITeam>()
 			{
 				new CloudBall.Engines.Dummy(),
+				//TeamFactory.Load(@"*\Engines\*.dll"),
 				new CloudBall.Engines.GoForTheBall(),
 				new CloudBall.Engines.SimpleStart(),
 				new CloudBall.Engines.Stonewall(),
