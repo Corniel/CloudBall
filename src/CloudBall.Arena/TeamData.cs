@@ -17,9 +17,9 @@ namespace CloudBall.Arena
 
 		[XmlIgnore]
 		public Type Implementation { get; set; }
-		public Assembly Assembly { get { return this.Implementation == null ? null : this.Implementation.Assembly; } }
+		public Assembly Assembly { get { return Implementation == null ? null : Implementation.Assembly; } }
 
-		public bool IsActive { get; set; }
+		public bool IsActive { get { return Implementation != null; } }
 		public Elo Rating { get; set; }
 		public int Wins { get; set; }
 		public int Draws { get; set; }
@@ -150,7 +150,6 @@ namespace CloudBall.Arena
 			{
 				Name = name,
 				Rating = InitalRating,
-				IsActive = true,
 				Implementation = botType,
 			};
 			return team;

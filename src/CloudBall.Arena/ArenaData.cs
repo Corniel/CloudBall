@@ -34,7 +34,6 @@ namespace CloudBall.Arena
 				}
 				else
 				{
-					existing.IsActive = true;
 					existing.Implementation = team.Implementation;
 					Console.WriteLine("Activated: {0}", existing);
 				}
@@ -54,7 +53,6 @@ namespace CloudBall.Arena
 
 				if (team != null)
 				{
-					team.IsActive = false;
 					team.Implementation = null;
 					Console.WriteLine("De-activated: {0}", team);
 				}

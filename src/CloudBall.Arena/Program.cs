@@ -40,10 +40,6 @@ namespace CloudBall.Arena
 			var settings = new ArenaAppConfigSettings();
 			var data = ArenaData.Load(settings.DataFile);
 
-			foreach (var team in data.Teams)
-			{
-				team.IsActive = false;
-			}
 			foreach (var file in settings.EngineDirectory.GetFiles("*.dll"))
 			{
 				try
