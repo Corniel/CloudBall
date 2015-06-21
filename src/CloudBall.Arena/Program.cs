@@ -1,6 +1,7 @@
 ﻿using CloudBall.Arena.Configuration;
 using log4net;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -83,7 +84,11 @@ namespace CloudBall.Arena
 				var red = pairings[0];
 				var blue = pairings[1];
 
-				Run(red, blue);
+				// if removed in the mean time, this will fail.
+				if (red.IsActive && blue.IsActive)
+				{
+					Run(red, blue);
+				}
 
 				pairings.Remove(red);
 				pairings.Remove(blue);
@@ -95,9 +100,10 @@ namespace CloudBall.Arena
 			{
 				try
 				{
+					ConsoleX.WritePairing(red, blue);
+					var sw = Stopwatch.StartNew();
 					var score = engine.Run();
-
-					ConsoleX.WriteResult(red, blue, score);
+					ConsoleX.WriteResult(red, blue, score, sw);
 
 					red.GoalsFor += score.Red;
 					red.GoalsAgainst += score.Blue;
