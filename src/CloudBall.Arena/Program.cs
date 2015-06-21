@@ -1,4 +1,5 @@
 ﻿using CloudBall.Arena.Configuration;
+using log4net;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,9 @@ namespace CloudBall.Arena
 {
 	public class Program
 	{
+		/// <summary>The logger. For now, only to guarantee that the log4net assembly is available for bots.</summary>
+		private ILog Log = LogManager.GetLogger(typeof(Program));
+
 		public static void Main(string[] args)
 		{
 			while (true)
@@ -88,7 +92,6 @@ namespace CloudBall.Arena
 				pairings.Remove(red);
 				pairings.Remove(blue);
 			}
-
 		}
 		public void Run(TeamData red, TeamData blue)
 		{
@@ -130,11 +133,16 @@ namespace CloudBall.Arena
 						engine.Save(file);
 					}
 
-
 					var zScore = Elo.GetZScore(red.Rating, blue.Rating);
 
-					red.Rating += ArenaSettings.Instance.K * ((double)score.RedScore - zScore);
-					blue.Rating += ArenaSettings.Instance.K * ((double)score.BlueScore - (1d - zScore));
+					if (!red.IsReferenceEngine)
+					{
+						red.Rating += ArenaSettings.Instance.K * ((double)score.RedScore - zScore);
+					}
+					if (!blue.IsReferenceEngine)
+					{
+						blue.Rating += ArenaSettings.Instance.K * ((double)score.BlueScore - (1d - zScore));
+					}
 
 					ArenaData.Instance.Sort();
 					ArenaData.Instance.SaveRankings(ArenaSettings.Instance.RankingsFile);
