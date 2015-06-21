@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using CloudBall.Arena.Configuration;
+using Common;
 using System;
 using System.IO;
 using System.Linq;
@@ -26,6 +27,19 @@ namespace CloudBall.Arena
 
 		public int GoalsFor { get; set; }
 		public int GoalsAgainst { get; set; }
+
+		/// <summary>Returns true if the engine is configured as reference engine.</summary>
+		/// <remarks>
+		/// If so, it's rating will not change.
+		/// </remarks>
+		public bool IsReferenceEngine
+		{
+			get
+			{
+				return String.Compare(Name, ArenaSettings.Instance.ReferenceEngine, StringComparison.InvariantCultureIgnoreCase) == 0;
+			}
+
+		}
 
 		public int Matches { get { return Wins + Draws + Loses; } }
 

@@ -10,6 +10,8 @@ namespace CloudBall.Arena.Configuration
 		public Int32 Seed { get; set; }
 		public Int32 K { get; set; }
 
+		public String ReferenceEngine { get; set; }
+
 		public FileInfo DataFile { get; set; }
 		public DirectoryInfo EngineDirectory { get; set; }
 		public FileInfo RankingsFile { get; set; }

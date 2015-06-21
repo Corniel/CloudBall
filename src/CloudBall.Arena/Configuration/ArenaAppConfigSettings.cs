@@ -9,6 +9,8 @@ namespace CloudBall.Arena.Configuration
 		public int Seed { get { return TryGet("Arena.Seed", Environment.TickCount); } }
 		public int K { get { return TryGet("Arena.K", 30); } }
 
+		public String ReferenceEngine { get { return TryGet("Arena.ReferenceEngine", String.Empty); } }
+
 		public FileInfo DataFile { get { return TryGet("Arena.DataFile", new FileInfo("Arena.xml")); } }
 		public FileInfo RankingsFile { get { return TryGet("Arena.RankingsFile", new FileInfo("Arena.Rankings.txt")); } }
 
@@ -17,7 +19,13 @@ namespace CloudBall.Arena.Configuration
 
 		public bool FileSystemWatcherIsEnabled { get { return TryGet("Arena.FileSystemWatcherIsEnabled", true); } }
 
-		protected DirectoryInfo TryGet(string configkey, DirectoryInfo def)
+
+		protected string TryGet(String configkey, String def)
+		{
+			return ConfigurationManager.AppSettings[configkey] ?? def;
+		}
+
+		protected DirectoryInfo TryGet(String configkey, DirectoryInfo def)
 		{
 			try
 			{
@@ -29,7 +37,7 @@ namespace CloudBall.Arena.Configuration
 				return def;
 			}
 		}
-		protected FileInfo TryGet(string configkey, FileInfo def)
+		protected FileInfo TryGet(String configkey, FileInfo def)
 		{
 			try
 			{
@@ -41,7 +49,7 @@ namespace CloudBall.Arena.Configuration
 				return def;
 			}
 		}
-		protected int TryGet(string configkey, int def)
+		protected int TryGet(String configkey, int def)
 		{
 			try
 			{
@@ -53,7 +61,7 @@ namespace CloudBall.Arena.Configuration
 				return def;
 			}
 		}
-		protected bool TryGet(string configkey, bool def)
+		protected bool TryGet(String configkey, bool def)
 		{
 			try
 			{
