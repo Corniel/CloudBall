@@ -131,7 +131,7 @@ namespace CloudBall.Arena
 
 			var nameAttr = botType.GetCustomAttribute<BotNameAttribute>();
 
-			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(new FileInfo(assembly.FullName));
+			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(new FileInfo(assembly.Location));
 			
 			var team = new TeamData()
 			{
