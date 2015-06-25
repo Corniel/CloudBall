@@ -15,6 +15,16 @@ namespace CloudBall.Arena
 
 		public static void Main(string[] args)
 		{
+			if (args != null & args.Length > 0 && args[0] == "clear")
+			{
+				var settings = new ArenaAppConfigSettings();
+				var data = ArenaData.Load(settings.DataFile);
+				foreach (var team in data.Teams)
+				{
+					team.Clear();
+				}
+				data.Save(settings.DataFile);
+			}
 			while (true)
 			{
 				try
@@ -139,11 +149,13 @@ namespace CloudBall.Arena
 
 					if (!red.IsReferenceEngine)
 					{
-						red.Rating += ArenaSettings.Instance.K * ((double)score.RedScore - zScore);
+						var kR = (ArenaSettings.Instance.K + ArenaSettings.Instance.K * 10 / (1 + red.Matches));
+						red.Rating += kR * ((double)score.RedScore - zScore);
 					}
 					if (!blue.IsReferenceEngine)
 					{
-						blue.Rating += ArenaSettings.Instance.K * ((double)score.BlueScore - (1d - zScore));
+						var kB = (ArenaSettings.Instance.K + ArenaSettings.Instance.K * 10 / (1 + blue.Matches));
+						blue.Rating += kB * ((double)score.BlueScore - (1d - zScore));
 					}
 
 					ArenaData.Instance.Sort();

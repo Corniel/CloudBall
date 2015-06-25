@@ -53,6 +53,15 @@ namespace CloudBall.Arena
 			}
 		}
 
+		public void Clear()
+		{
+			Wins = 0;
+			Draws = 0;
+			Loses = 0;
+			GoalsFor = 0;
+			GoalsAgainst = 0;
+		}
+
 		#region IEquatable
 
 		/// <summary>Returns true if this instance and the other instance are equal, otherwise false.</summary>
@@ -132,7 +141,7 @@ namespace CloudBall.Arena
 			var nameAttr = botType.GetCustomAttribute<BotNameAttribute>();
 
 			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(new FileInfo(assembly.Location));
-			
+
 			var team = new TeamData()
 			{
 				Name = name,
