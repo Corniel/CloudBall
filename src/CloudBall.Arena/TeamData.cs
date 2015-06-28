@@ -2,7 +2,6 @@
 using Common;
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
@@ -21,13 +20,33 @@ namespace CloudBall.Arena
 
 		public bool IsActive { get { return Implementation != null; } }
 		public Elo Rating { get; set; }
-		public int Wins { get; set; }
-		public int Draws { get; set; }
-		public int Loses { get; set; }
+		public double K { get; set; }
 
-		public int GoalsFor { get; set; }
-		public int GoalsAgainst { get; set; }
+		public double GetK(int kMin, double stabilizer)
+		{
+			K *= stabilizer;
+			if (K == 0) { K = 100; }
+			K = Math.Max(K, kMin);
+			return K;
+		}
 
+		[XmlElement("Result")]
+		public TeamResults Results {
+			get
+			{
+				if (m_Results == null)
+				{
+					m_Results = new TeamResults();
+				}
+				return m_Results;
+			}
+			set
+			{
+				m_Results = value;
+			}
+		}
+		private TeamResults m_Results;
+		
 		/// <summary>Returns true if the engine is configured as reference engine.</summary>
 		/// <remarks>
 		/// If so, it's rating will not change.
@@ -41,25 +60,9 @@ namespace CloudBall.Arena
 
 		}
 
-		public int Matches { get { return Wins + Draws + Loses; } }
-
-		public decimal? Score
+		public void Clear() 
 		{
-			get
-			{
-				if (Matches == 0) { return 0; }
-
-				return (Wins + Draws * 0.5m) / Matches;
-			}
-		}
-
-		public void Clear()
-		{
-			Wins = 0;
-			Draws = 0;
-			Loses = 0;
-			GoalsFor = 0;
-			GoalsAgainst = 0;
+			Results = new TeamResults();
 		}
 
 		#region IEquatable

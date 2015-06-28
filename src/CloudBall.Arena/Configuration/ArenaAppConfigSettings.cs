@@ -8,6 +8,9 @@ namespace CloudBall.Arena.Configuration
 	{
 		public int Seed { get { return TryGet("Arena.Seed", Environment.TickCount); } }
 		public int K { get { return TryGet("Arena.K", 30); } }
+		public Double Stabilizer { get { return TryGet("Arena.Stabilizer", 0.999); } }
+
+
 
 		public String ReferenceEngine { get { return TryGet("Arena.ReferenceEngine", String.Empty); } }
 
@@ -66,6 +69,18 @@ namespace CloudBall.Arena.Configuration
 			try
 			{
 				return bool.Parse(ConfigurationManager.AppSettings[configkey]);
+			}
+			catch (Exception x)
+			{
+				ConsoleX.WriteWarning("Failed to resolve app setting for '{0}': {1}", configkey, x.Message);
+				return def;
+			}
+		}
+		private Double TryGet(String configkey, Double def)
+		{
+			try
+			{
+				return Double.Parse(ConfigurationManager.AppSettings[configkey]);
 			}
 			catch (Exception x)
 			{

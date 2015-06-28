@@ -73,22 +73,22 @@ namespace CloudBall.Arena
 			int i = 1;
 			using (var writer = new StreamWriter(file.FullName))
 			{
-				writer.WriteLine("      Team                   Elo       W       D       L       #      Goals For  Goals Against       %");
-				writer.WriteLine("======================================================================================================");
+				writer.WriteLine("      Team                       Elo       W       D       L       #      Goals For  Goals Against       %");
+				writer.WriteLine("==========================================================================================================");
 
 				foreach (var team in ArenaData.Instance.Teams)
 				{
 
 					writer.Write("{0,4}  ", i++);
-					writer.Write("{0,-20}  ", team.Name + (team.IsActive ? "" : "*"));
+					writer.Write("{0,-24}  ", team.Name + (team.IsActive ? "" : "*"));
 					writer.Write("{0:0000}  ", team.Rating);
-					writer.Write("{0,6}  ", team.Wins);
-					writer.Write("{0,6}  ", team.Draws);
-					writer.Write("{0,6}  ", team.Loses);
-					writer.Write("{0,6}  ", team.Matches);
-					writer.Write("{0,6}+ ({1:0.00}) ", team.GoalsFor, (double)team.GoalsFor/team.Matches);
-					writer.Write("{0,6}- ({1:0.00}) ", team.GoalsAgainst, (double)team.GoalsAgainst/team.Matches);
-					writer.Write("{0,6} ", team.Score.Value.ToString("0.0%"));
+					writer.Write("{0,6}  ", team.Results.Wins);
+					writer.Write("{0,6}  ", team.Results.Draws);
+					writer.Write("{0,6}  ", team.Results.Loses);
+					writer.Write("{0,6}  ", team.Results.Matches);
+					writer.Write("{0,6}+ ({1:0.00}) ", team.Results.GoalsFor, team.Results.AverageGoalsFor);
+					writer.Write("{0,6}- ({1:0.00}) ", team.Results.GoalsAgainst, team.Results.AverageGoalsFor);
+					writer.Write("{0,6} ", team.Results.Score.ToString("0.0%"));
 					writer.WriteLine();
 				}
 			}

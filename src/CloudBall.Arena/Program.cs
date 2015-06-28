@@ -15,6 +15,7 @@ namespace CloudBall.Arena
 
 		public static void Main(string[] args)
 		{
+			Console.WindowWidth = 84;
 			if (args != null & args.Length > 0 && args[0] == "clear")
 			{
 				var settings = new ArenaAppConfigSettings();
@@ -115,26 +116,26 @@ namespace CloudBall.Arena
 					var score = engine.Run();
 					ConsoleX.WriteResult(red, blue, score, sw);
 
-					red.GoalsFor += score.Red;
-					red.GoalsAgainst += score.Blue;
+					red.Results.GoalsFor += score.Red;
+					red.Results.GoalsAgainst += score.Blue;
 
-					blue.GoalsFor += score.Blue;
-					blue.GoalsAgainst += score.Red;
+					blue.Results.GoalsFor += score.Blue;
+					blue.Results.GoalsAgainst += score.Red;
 
 					if (score.RedWins)
 					{
-						red.Wins++;
-						blue.Loses++;
+						red.Results.Wins++;
+						blue.Results.Loses++;
 					}
 					else if (score.BlueWins)
 					{
-						blue.Wins++;
-						red.Loses++;
+						blue.Results.Wins++;
+						red.Results.Loses++;
 					}
 					else
 					{
-						red.Draws++;
-						blue.Draws++;
+						red.Results.Draws++;
+						blue.Results.Draws++;
 					}
 					if (ArenaSettings.Instance.ReplayDirectory.Exists)
 					{
@@ -149,12 +150,12 @@ namespace CloudBall.Arena
 
 					if (!red.IsReferenceEngine)
 					{
-						var kR = (ArenaSettings.Instance.K + ArenaSettings.Instance.K * 10 / (1 + red.Matches));
+						var kR = red.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
 						red.Rating += kR * ((double)score.RedScore - zScore);
 					}
 					if (!blue.IsReferenceEngine)
 					{
-						var kB = (ArenaSettings.Instance.K + ArenaSettings.Instance.K * 10 / (1 + blue.Matches));
+						var kB = blue.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
 						blue.Rating += kB * ((double)score.BlueScore - (1d - zScore));
 					}
 

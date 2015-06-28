@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeamData.cs" />
     <Compile Include="TeamDataComparer.cs" />
+    <Compile Include="TeamResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config.xample">

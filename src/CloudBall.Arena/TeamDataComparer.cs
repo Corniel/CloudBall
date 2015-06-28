@@ -8,7 +8,7 @@ namespace CloudBall.Arena
 		{
 			if (x.IsActive == y.IsActive)
 			{
-				return y.Score.GetValueOrDefault().CompareTo(x.Score.GetValueOrDefault());
+				return y.Rating.CompareTo(x.Rating);
 			}
 			return y.IsActive.CompareTo(x.IsActive);
 		}

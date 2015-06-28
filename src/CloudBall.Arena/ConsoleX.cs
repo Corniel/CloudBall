@@ -91,11 +91,11 @@ namespace CloudBall.Arena
 
 			Console.ForegroundColor = ConsoleColor.Red;
 
-			Console.Write("  {0,-20} ({1:0000})", red.Name, red.Rating);
+			Console.Write("  {0,-24} ({1:0000})", red.Name, red.Rating);
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.Write(" - ");
 			Console.ForegroundColor = ConsoleColor.Blue;
-			Console.Write("{0,-20} ({1:0000})", blue.Name, blue.Rating);
+			Console.Write("{0,-24} ({1:0000})", blue.Name, blue.Rating);
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.Write(" : ");
 			Console.ForegroundColor = color;

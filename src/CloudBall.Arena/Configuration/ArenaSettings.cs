@@ -9,6 +9,7 @@ namespace CloudBall.Arena.Configuration
 
 		public Int32 Seed { get; set; }
 		public Int32 K { get; set; }
+		public Double Stabilizer { get; set; }
 
 		public String ReferenceEngine { get; set; }
 

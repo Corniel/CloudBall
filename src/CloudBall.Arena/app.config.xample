@@ -2,7 +2,8 @@
 <configuration>
 	<appSettings>
 		<add key="Arena.Seed" value="12"/>
-		<add key="Arena.K" value="12"/>
+		<add key="Arena.K" value="5"/>
+		<add key="Arena.Stabilizer" value="0.999"/>
 		<add key="Arena.ReferenceEngine" value="engine name"/>
 		<add key="Arena.DataFile" value="*\CloudBall\Arena\Arena.xml"/>
 		<add key="Arena.RankingsFile" value="*\CloudBall\Arena\Arena.Rankings.txt"/>

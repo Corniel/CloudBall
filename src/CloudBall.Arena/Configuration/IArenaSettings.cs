@@ -7,9 +7,9 @@ namespace CloudBall.Arena.Configuration
 	{
 		Int32 Seed { get; }
 		Int32 K { get; }
+		double Stabilizer { get; }
 
 		String ReferenceEngine { get; }
-
 		FileInfo DataFile { get; }
 		DirectoryInfo EngineDirectory { get; }
 		FileInfo RankingsFile { get; }
