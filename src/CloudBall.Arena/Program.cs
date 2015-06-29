@@ -98,72 +98,77 @@ namespace CloudBall.Arena
 				// if removed in the mean time, this will fail.
 				if (red.IsActive && blue.IsActive)
 				{
-					Run(red, blue);
+					// if failure, just reload all engines.
+					if (!Run(red, blue))
+					{
+						ArenaData.Instance = ArenaData.Load(ArenaSettings.Instance.DataFile);
+					}
 				}
 
 				pairings.Remove(red);
 				pairings.Remove(blue);
 			}
 		}
-		public void Run(TeamData red, TeamData blue)
+		public bool Run(TeamData red, TeamData blue)
 		{
 			using (var engine = new CloudBallEngine(red.CreateInstance(), blue.CreateInstance()))
 			{
+				CloudBallScore score = null;
+				ConsoleX.WritePairing(red, blue);
+				var sw = Stopwatch.StartNew();
 				try
 				{
-					ConsoleX.WritePairing(red, blue);
-					var sw = Stopwatch.StartNew();
-					var score = engine.Run();
-					ConsoleX.WriteResult(red, blue, score, sw);
-
-					red.Results.GoalsFor += score.Red;
-					red.Results.GoalsAgainst += score.Blue;
-
-					blue.Results.GoalsFor += score.Blue;
-					blue.Results.GoalsAgainst += score.Red;
-
-					if (score.RedWins)
-					{
-						red.Results.Wins++;
-						blue.Results.Loses++;
-					}
-					else if (score.BlueWins)
-					{
-						blue.Results.Wins++;
-						red.Results.Loses++;
-					}
-					else
-					{
-						red.Results.Draws++;
-						blue.Results.Draws++;
-					}
-					if (ArenaSettings.Instance.ReplayDirectory.Exists)
-					{
-						var file = new FileInfo(Path.Combine(
-								ArenaSettings.Instance.ReplayDirectory.FullName,
-								string.Format("{0}-{1} {2:00}-{3:00} {4:yyyy-MM-dd_hh_mm_ss}.cbr",
-								red.Name, blue.Name, score.Red, score.Blue, DateTime.Now)));
-						engine.Save(file);
-					}
-
-					var zScore = Elo.GetZScore(red.Rating, blue.Rating);
-
-					if (!red.IsReferenceEngine)
-					{
-						var kR = red.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
-						red.Rating += kR * ((double)score.RedScore - zScore);
-					}
-					if (!blue.IsReferenceEngine)
-					{
-						var kB = blue.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
-						blue.Rating += kB * ((double)score.BlueScore - (1d - zScore));
-					}
-
-					ArenaData.Instance.Sort();
-					ArenaData.Instance.SaveRankings(ArenaSettings.Instance.RankingsFile);
-					ArenaData.Instance.Save(ArenaSettings.Instance.DataFile);
+					score = engine.Run();
 				}
-				catch (SimulationFailedException) { }
+				catch (SimulationFailedException)
+				{
+					ConsoleX.WriteError("crashed");
+					return false;
+				}
+
+				ConsoleX.WriteResult(red, blue, score, sw);
+				red.Results.GoalsFor += score.Red;
+				red.Results.GoalsAgainst += score.Blue;
+
+				blue.Results.GoalsFor += score.Blue;
+				blue.Results.GoalsAgainst += score.Red;
+
+				if (score.RedWins)
+				{
+					red.Results.Wins++;
+					blue.Results.Loses++;
+				}
+				else if (score.BlueWins)
+				{
+					blue.Results.Wins++;
+					red.Results.Loses++;
+				}
+				else
+				{
+					red.Results.Draws++;
+					blue.Results.Draws++;
+				}
+				if (ArenaSettings.Instance.ReplayDirectory.Exists)
+				{
+					var file = new FileInfo(Path.Combine(
+							ArenaSettings.Instance.ReplayDirectory.FullName,
+							string.Format("{0}-{1} {2:00}-{3:00} {4:yyyy-MM-dd_hh_mm_ss}.cbr",
+							red.Name, blue.Name, score.Red, score.Blue, DateTime.Now)));
+					engine.Save(file);
+				}
+
+				var zScore = Elo.GetZScore(red.Rating, blue.Rating);
+
+				var kR = red.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
+				red.Rating += kR * ((double)score.RedScore - zScore);
+
+				var kB = blue.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
+				blue.Rating += kB * ((double)score.BlueScore - (1d - zScore));
+
+				ArenaData.Instance.Sort();
+				ArenaData.Instance.SaveRankings(ArenaSettings.Instance.RankingsFile);
+				ArenaData.Instance.Save(ArenaSettings.Instance.DataFile);
+				return true;
 			}
 		}
 	}

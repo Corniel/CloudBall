@@ -87,7 +87,7 @@ namespace CloudBall.Arena
 					writer.Write("{0,6}  ", team.Results.Loses);
 					writer.Write("{0,6}  ", team.Results.Matches);
 					writer.Write("{0,6}+ ({1:0.00}) ", team.Results.GoalsFor, team.Results.AverageGoalsFor);
-					writer.Write("{0,6}- ({1:0.00}) ", team.Results.GoalsAgainst, team.Results.AverageGoalsFor);
+					writer.Write("{0,6}- ({1:0.00}) ", team.Results.GoalsAgainst, team.Results.AverageGoalsAgainst);
 					writer.Write("{0,6} ", team.Results.Score.ToString("0.0%"));
 					writer.WriteLine();
 				}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Xml;
 
 namespace CloudBall.Arena.Configuration
 {
@@ -56,7 +57,7 @@ namespace CloudBall.Arena.Configuration
 		{
 			try
 			{
-				return int.Parse(ConfigurationManager.AppSettings[configkey]);
+				return XmlConvert.ToInt32(ConfigurationManager.AppSettings[configkey]);
 			}
 			catch (Exception x)
 			{
@@ -68,7 +69,7 @@ namespace CloudBall.Arena.Configuration
 		{
 			try
 			{
-				return bool.Parse(ConfigurationManager.AppSettings[configkey]);
+				return XmlConvert.ToBoolean(ConfigurationManager.AppSettings[configkey]);
 			}
 			catch (Exception x)
 			{
@@ -80,7 +81,7 @@ namespace CloudBall.Arena.Configuration
 		{
 			try
 			{
-				return Double.Parse(ConfigurationManager.AppSettings[configkey]);
+				return XmlConvert.ToDouble(ConfigurationManager.AppSettings[configkey]);
 			}
 			catch (Exception x)
 			{

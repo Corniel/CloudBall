@@ -24,6 +24,7 @@ namespace CloudBall.Arena
 
 		public double GetK(int kMin, double stabilizer)
 		{
+			if (IsReferenceEngine) { return 0; }
 			K *= stabilizer;
 			if (K == 0) { K = 100; }
 			K = Math.Max(K, kMin);
