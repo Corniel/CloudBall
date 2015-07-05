@@ -16,7 +16,7 @@ namespace CloudBall.Arena.Configuration
 		public FileInfo DataFile { get; set; }
 		public DirectoryInfo EngineDirectory { get; set; }
 		public FileInfo RankingsFile { get; set; }
-		public DirectoryInfo ReplayDirectory { get; set; }
+		public DirectoryInfo PluginDirectory { get; set; }
 
 		public bool FileSystemWatcherIsEnabled { get; set; }
 	}

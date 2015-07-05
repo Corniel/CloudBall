@@ -8,6 +8,25 @@ namespace CloudBall
 {
 	public static class TeamFactory
 	{
+		/// <summary>Gets the name for the bot.</summary>
+		public static string GetName(Type tp)
+		{
+			var nameAttr = tp.GetCustomAttribute<BotNameAttribute>();
+			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(new FileInfo(tp.Assembly.Location));
+			return name;
+		}
+		/// <summary>Gets the name for the bot.</summary>
+		public static string GetName(ITeam team)
+		{
+			var tp = team.GetType();
+			return GetName(tp);
+		}
+		private static string GetNameFromFile(FileInfo file)
+		{
+			var name = Path.GetFileNameWithoutExtension(file.FullName);
+			return name.Substring(name.LastIndexOf('.') + 1);
+		}
+
 		/// <summary>Gets the type in the assembly that implements <see cref="Common.ITeam"/>.</summary>
 		/// <param name="assembly">
 		/// The assembly to scan.

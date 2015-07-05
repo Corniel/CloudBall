@@ -2,9 +2,7 @@
 using log4net;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace CloudBall.Arena
 {
@@ -51,19 +49,9 @@ namespace CloudBall.Arena
 
 			var settings = new ArenaAppConfigSettings();
 			var data = ArenaData.Load(settings.DataFile);
+			data.Load(settings.EngineDirectory);
 
-			foreach (var file in settings.EngineDirectory.GetFiles("*.dll"))
-			{
-				try
-				{
-					var assembly = Assembly.LoadFile(file.FullName);
-					data.AddOrUpdate(assembly);
-				}
-				catch (Exception x)
-				{
-					ConsoleX.WriteWarning("Loading Assembly failed: {0}", x.Message);
-				}
-			}
+			PluginCollection.Instance.Load(settings.PluginDirectory);
 
 			Init(settings, data);
 		}
@@ -80,12 +68,14 @@ namespace CloudBall.Arena
 			ArenaSettings.Instance = settings;
 			ArenaData.Instance = data;
 
-			this.Rnd = new Random(ArenaSettings.Instance.Seed);
-			this.Watcher = new ArenaEngineWatcher();
+			Rnd = new Random(ArenaSettings.Instance.Seed);
+			EngineWatcher = new ArenaEngineWatcher();
+			PluginWatcher = new PluginWatcher();
 		}
 
 		public Random Rnd { get; protected set; }
-		public ArenaEngineWatcher Watcher { get; protected set; }
+		public ArenaEngineWatcher EngineWatcher { get; protected set; }
+		public PluginWatcher PluginWatcher { get; protected set; }
 
 		public void Run()
 		{
@@ -125,50 +115,67 @@ namespace CloudBall.Arena
 					ConsoleX.WriteError("crashed");
 					return false;
 				}
-
 				ConsoleX.WriteResult(red, blue, score, sw);
-				red.Results.GoalsFor += score.Red;
-				red.Results.GoalsAgainst += score.Blue;
 
-				blue.Results.GoalsFor += score.Blue;
-				blue.Results.GoalsAgainst += score.Red;
-
-				if (score.RedWins)
-				{
-					red.Results.Wins++;
-					blue.Results.Loses++;
-				}
-				else if (score.BlueWins)
-				{
-					blue.Results.Wins++;
-					red.Results.Loses++;
-				}
-				else
-				{
-					red.Results.Draws++;
-					blue.Results.Draws++;
-				}
-				if (ArenaSettings.Instance.ReplayDirectory.Exists)
-				{
-					var file = new FileInfo(Path.Combine(
-							ArenaSettings.Instance.ReplayDirectory.FullName,
-							string.Format("{0}-{1} {2:00}-{3:00} {4:yyyy-MM-dd_hh_mm_ss}.cbr",
-							red.Name, blue.Name, score.Red, score.Blue, DateTime.Now)));
-					engine.Save(file);
-				}
-
-				var zScore = Elo.GetZScore(red.Rating, blue.Rating);
-
-				var kR = red.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
-				red.Rating += kR * ((double)score.RedScore - zScore);
-
-				var kB = blue.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
-				blue.Rating += kB * ((double)score.BlueScore - (1d - zScore));
+				UpdateResults(red, blue, score);
+				UpdateRatings(red, blue, score);
+				ApplyPostResultHandlers(red, blue, engine);
 
 				ArenaData.Instance.Sort();
 				ArenaData.Instance.SaveRankings(ArenaSettings.Instance.RankingsFile);
 				ArenaData.Instance.Save(ArenaSettings.Instance.DataFile);
 				return true;
+			}
+		}
+
+		private static void UpdateResults(TeamData red, TeamData blue, CloudBallScore score)
+		{
+			red.Results.GoalsFor += score.Red;
+			red.Results.GoalsAgainst += score.Blue;
+
+			blue.Results.GoalsFor += score.Blue;
+			blue.Results.GoalsAgainst += score.Red;
+
+			if (score.RedWins)
+			{
+				red.Results.Wins++;
+				blue.Results.Loses++;
+			}
+			else if (score.BlueWins)
+			{
+				blue.Results.Wins++;
+				red.Results.Loses++;
+			}
+			else
+			{
+				red.Results.Draws++;
+				blue.Results.Draws++;
+			}
+		}
+
+		private static void UpdateRatings(TeamData red, TeamData blue, CloudBallScore score)
+		{
+			var zScore = Elo.GetZScore(red.Rating, blue.Rating);
+
+			var kR = red.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
+			red.Rating += kR * ((double)score.RedScore - zScore);
+
+			var kB = blue.GetK(ArenaSettings.Instance.K, ArenaSettings.Instance.Stabilizer);
+			blue.Rating += kB * ((double)score.BlueScore - (1d - zScore));
+		}
+
+		private static void ApplyPostResultHandlers(TeamData red, TeamData blue, CloudBallEngine engine)
+		{
+			foreach (var handler in PluginCollection.Instance.PostResultHandlers)
+			{
+				try
+				{
+					handler.Apply(engine.Game, red.Rating, blue.Rating);
+				}
+				catch (Exception x)
+				{
+					ConsoleX.WriteWarning("Plug-in '{0}' failed: {1}", handler.GetType().Name, x);
+				}
 			}
 		}
 	}

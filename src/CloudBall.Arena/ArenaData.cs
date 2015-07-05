@@ -63,6 +63,22 @@ namespace CloudBall.Arena
 			}
 		}
 
+		public void Load(DirectoryInfo directory)
+		{
+			foreach (var file in directory.GetFiles("*.dll"))
+			{
+				try
+				{
+					var assembly = Assembly.LoadFile(file.FullName);
+					AddOrUpdate(assembly);
+				}
+				catch (Exception x)
+				{
+					ConsoleX.WriteWarning("Loading Assembly failed: {0}", x.Message);
+				}
+			}
+		}
+		
 		public void Sort()
 		{
 			this.Teams.Sort(new TeamDataComparer());

@@ -19,7 +19,7 @@ namespace CloudBall.Arena.Configuration
 		public FileInfo RankingsFile { get { return TryGet("Arena.RankingsFile", new FileInfo("Arena.Rankings.txt")); } }
 
 		public DirectoryInfo EngineDirectory { get { return TryGet("Arena.EngineDirectory", new DirectoryInfo("Engines")); } }
-		public DirectoryInfo ReplayDirectory { get { return TryGet("Arena.ReplayDirectory", new DirectoryInfo("Replays")); } }
+		public DirectoryInfo PluginDirectory { get { return TryGet("Arena.PluginDirectory", new DirectoryInfo("Plugins")); } }
 
 		public bool FileSystemWatcherIsEnabled { get { return TryGet("Arena.FileSystemWatcherIsEnabled", true); } }
 

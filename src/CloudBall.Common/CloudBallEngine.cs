@@ -2,6 +2,7 @@
 using GameCommon;
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace CloudBall
 {
@@ -10,10 +11,15 @@ namespace CloudBall
 		public CloudBallEngine(ITeam red, ITeam blue)
 		{
 			if (red == null) { throw new ArgumentNullException("red"); }
-			if (red == null) { throw new ArgumentNullException("blue"); }
+			if (blue == null) { throw new ArgumentNullException("blue"); }
 
-			this.InnerEngine = new b(red, blue);
+			Red = red;
+			Blue = blue;
+			InnerEngine = new b(red, blue);
 		}
+
+		public ITeam Red { get; protected set; }
+		public ITeam Blue { get; protected set; }
 
 		protected b InnerEngine { get; set; }
 
@@ -31,34 +37,26 @@ namespace CloudBall
 
 		public void Save(FileInfo file)
 		{
-			using (var stream = new FileStream(file.FullName, FileMode.Create, FileAccess.Write))
-			{
-				Save(stream);
-			} 
-		}
-		public void Save(Stream stream)
-		{
-			var data = this.InnerEngine.c();
-			stream.Write(data, 0, data.Length);
+			FileHandler.SaveReplay(file.FullName, Game);
 		}
 
 		public GameHistory Game
 		{
 			get
 			{
-				var file = new FileInfo(Path.GetTempFileName());
-				if(!file.Directory.Exists)
+				if (m_Game == null)
 				{
-					file.Directory.Create();
+					InnerEngine.c();
+					var prop = typeof(b).GetField("e", BindingFlags.Instance | BindingFlags.NonPublic);
+					m_Game = (GameHistory)prop.GetValue(InnerEngine);
+					m_Game.Team1Name = TeamFactory.GetName(Red);
+					m_Game.Team2Name = TeamFactory.GetName(Blue);
 				}
-				Save(file);
-
-				var history = FileHandler.LoadReplay(file.FullName);
-				file.Delete();
-
-				return history;
+				return m_Game;
 			}
 		}
+		protected GameHistory m_Game;
+	
 
 		public void Dispose()
 		{

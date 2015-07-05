@@ -7,8 +7,10 @@
 		<add key="Arena.ReferenceEngine" value="engine name"/>
 		<add key="Arena.DataFile" value="*\CloudBall\Arena\Arena.xml"/>
 		<add key="Arena.RankingsFile" value="*\CloudBall\Arena\Arena.Rankings.txt"/>
+		<add key="Arena.HandlerDirectory" value="*\CloudBall\Arena\Handlers"/>
 		<add key="Arena.EngineDirectory" value="*\CloudBall\Arena\Engines"/>
 		<add key="Arena.ReplayDirectory" value="*\CloudBall\Arena\Replays"/>
+		<add key="Arena.ReplayImageDirectory" value="*\CloudBall\Arena\Images"/>
 		<add key="Arena.FileSystemWatcherIsEnabled" value="true"/>
 	</appSettings>
 </configuration>

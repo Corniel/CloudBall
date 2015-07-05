@@ -211,9 +211,10 @@ pip-log.txt
 #Translations
 *.mo
 
-#Mr Developer
+#Custom
 *.config
-.mr.developer.cfg
+*.jmconfig
 /src/packages
 /Arena
 /Binaries
+

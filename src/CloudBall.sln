@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0C67B544-510A-45AE-81E2-DF831FBD5FF7}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall", "CloudBall\CloudBall.csproj", "{482F55D6-B34F-4969-BADA-C2246DBE71E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBallContent", "CloudBallContent\CloudBallContent.contentproj", "{32F18D77-239C-4CAE-8FA1-E066FF5FD150}"
@@ -17,14 +24,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall.Engines.GoForTheB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall.Engines.Dummy", "CloudBall.Engines.Dummy\CloudBall.Engines.Dummy.csproj", "{235D9FDF-7E97-4843-8BE9-12FDCF59279F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0C67B544-510A-45AE-81E2-DF831FBD5FF7}"
-	ProjectSection(SolutionItems) = preProject
-		..\.gitattributes = ..\.gitattributes
-		..\.gitignore = ..\.gitignore
-		..\README.md = ..\README.md
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall.Engines.Stonewall", "CloudBall.Engines.Stonewall\CloudBall.Engines.Stonewall.csproj", "{0535D943-DF50-409A-9837-ABA0FFF09E33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall.UnitTests", "CloudBall.UnitTests\CloudBall.UnitTests.csproj", "{F537341A-EF0D-4A68-8859-FE60BE5A0A90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall.Arena.GameLogger", "CloudBall.Arena.GameLogger\CloudBall.Arena.GameLogger.csproj", "{ADA6C619-BEF0-4015-89E2-CD12AC65573E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudBall.Arena.GameImageLogger", "CloudBall.Arena.GameImageLogger\CloudBall.Arena.GameImageLogger.csproj", "{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +123,36 @@ Global
 		{0535D943-DF50-409A-9837-ABA0FFF09E33}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0535D943-DF50-409A-9837-ABA0FFF09E33}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0535D943-DF50-409A-9837-ABA0FFF09E33}.Release|x86.ActiveCfg = Release|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F537341A-EF0D-4A68-8859-FE60BE5A0A90}.Release|x86.ActiveCfg = Release|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ADA6C619-BEF0-4015-89E2-CD12AC65573E}.Release|x86.ActiveCfg = Release|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ACDC39A3-954C-49E9-BEBA-B05D5378E2BB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

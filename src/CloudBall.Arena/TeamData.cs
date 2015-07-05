@@ -141,10 +141,7 @@ namespace CloudBall.Arena
 		public static TeamData Create(Assembly assembly)
 		{
 			var botType = TeamFactory.GetTeamType(assembly);
-
-			var nameAttr = botType.GetCustomAttribute<BotNameAttribute>();
-
-			var name = nameAttr != null ? nameAttr.Name : GetNameFromFile(new FileInfo(assembly.Location));
+			var name = TeamFactory.GetName(botType);
 
 			var team = new TeamData()
 			{
@@ -153,11 +150,6 @@ namespace CloudBall.Arena
 				Implementation = botType,
 			};
 			return team;
-		}
-		private static string GetNameFromFile(FileInfo file)
-		{
-			var name = Path.GetFileNameWithoutExtension(file.FullName);
-			return name.Substring(name.LastIndexOf('.') + 1);
 		}
 	}
 }
